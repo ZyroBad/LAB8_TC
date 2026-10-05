@@ -36,5 +36,5 @@
 <circle cx="750.0" cy="160.20684967108883" r="5" fill="#087f8c"/>
 <circle cx="880.0" cy="103.50402368891383" r="5" fill="#087f8c"/>
 <polyline points="100.0,427.8792396242127 230.0,374.3892947549018 360.0,316.809820260237 490.0,261.712510510283 620.0,217.26950065320264 750.0,160.20684967108883 880.0,103.50402368891383" fill="none" stroke="#087f8c" stroke-width="2"/>
-<text x="480" y="515" text-anchor="middle" font-size="13">Limite excedido (sin punto): n = ninguno</text>
+<text x="480" y="515" text-anchor="middle" font-size="13">Sin medicion completa (sin punto): n = ninguno</text>
 </g></svg>

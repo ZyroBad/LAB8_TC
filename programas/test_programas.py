@@ -1,6 +1,9 @@
 import contextlib
 import io
+from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
 
 import problem1
 import problem2
@@ -33,6 +36,28 @@ class ProgramTests(unittest.TestCase):
         row = profiling.measure("problem1", 1000000, 0.2)
         self.assertEqual(row["estado"], "limite_excedido")
         self.assertEqual(row["tiempo_medido_segundos"], "")
+
+    def test_unlimited_mode(self):
+        row = profiling.measure("problem1", 10, None)
+        self.assertEqual(row["estado"], "completado")
+        self.assertEqual(row["limite_segundos"], "sin_limite")
+        self.assertGreater(float(row["tiempo_medido_segundos"]), 0)
+
+    def test_resume_preserves_completed_rows(self):
+        with tempfile.TemporaryDirectory() as folder:
+            with patch.object(profiling, "BASE", Path(folder)):
+                with patch("sys.argv", ["profile.py", "--values", "1"]):
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        profiling.main()
+                before = profiling.load_results("problema1")
+                self.assertEqual(before[1]["estado"], "completado")
+                self.assertEqual(before[10]["estado"], "pendiente")
+                with patch.object(profiling, "measure") as measured:
+                    with patch("sys.argv", ["profile.py", "--resume", "--values", "1"]):
+                        with contextlib.redirect_stdout(io.StringIO()):
+                            profiling.main()
+                    measured.assert_not_called()
+                self.assertEqual(profiling.load_results("problema1"), before)
 
 
 if __name__ == "__main__":

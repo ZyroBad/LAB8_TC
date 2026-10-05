@@ -3,6 +3,6 @@ n,operaciones,estado,tiempo_medido_segundos,limite_segundos
 10,9,completado,0.000084400002,10.0
 100,825,completado,0.004417999997,10.0
 1000,83250,completado,0.475600700011,10.0
-10000,8332500,limite_excedido,,10.0
+10000,8332500,completado,40.790361399995,120.0
 100000,833325000,limite_excedido,,10.0
 1000000,83333250000,limite_excedido,,10.0

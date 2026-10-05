@@ -36,10 +36,10 @@ def worker(module_name: str, n: int) -> None:
     print(json.dumps({"seconds": elapsed}))
 
 
-def measure(module_name: str, n: int, timeout: float) -> dict:
+def measure(module_name: str, n: int, timeout: float | None) -> dict:
     operations = importlib.import_module(module_name).operation_count(n)
     row = dict(n=n, operaciones=operations, estado="completado",
-               tiempo_medido_segundos="", limite_segundos=timeout)
+               tiempo_medido_segundos="", limite_segundos=timeout if timeout is not None else "sin_limite")
     try:
         completed = subprocess.run(
             [sys.executable, "-B", str(Path(__file__).resolve()),
@@ -96,7 +96,7 @@ def svg_graph(name: str, complexity: str, rows: list[dict]) -> Path:
         segment.append(f"{px},{py}")
         elements.append(f'<circle cx="{px}" cy="{py}" r="5" fill="#087f8c"/>')
     missing = ", ".join(str(r["n"]) for r in rows if r["estado"] != "completado") or "ninguno"
-    elements.append(f'<text x="480" y="515" text-anchor="middle" font-size="13">Limite excedido (sin punto): n = {missing}</text>')
+    elements.append(f'<text x="480" y="515" text-anchor="middle" font-size="13">Sin medicion completa (sin punto): n = {missing}</text>')
     elements.append('</g></svg>')
     path = BASE / "graficas" / f"{name}.svg"
     path.parent.mkdir(exist_ok=True)
@@ -104,42 +104,75 @@ def svg_graph(name: str, complexity: str, rows: list[dict]) -> Path:
     return path
 
 
+def save_results(name: str, complexity: str, rows: list[dict]) -> None:
+    path = BASE / "resultados" / f"{name}.csv"
+    path.parent.mkdir(exist_ok=True)
+    with path.open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=FIELDS)
+        writer.writeheader()
+        writer.writerows(rows)
+    svg_graph(name, complexity, rows)
+
+
+def load_results(name: str) -> dict[int, dict]:
+    path = BASE / "resultados" / f"{name}.csv"
+    if not path.exists():
+        return {}
+    with path.open(newline="", encoding="utf-8") as stream:
+        rows = list(csv.DictReader(stream))
+    for row in rows:
+        row["n"] = int(row["n"])
+        row["operaciones"] = int(row["operaciones"])
+    return {row["n"]: row for row in rows}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Profiling real con limite por ejecucion")
-    parser.add_argument("--timeout", type=float, default=10.0)
+    parser.add_argument("--timeout", type=float, default=10.0,
+                        help="Limite por proceso en segundos; 0 desactiva el limite")
+    parser.add_argument("--resume", action="store_true",
+                        help="Conserva mediciones completadas y reintenta las pendientes")
+    parser.add_argument("--values", type=int, nargs="+", default=N_VALUES,
+                        help="Entradas que se intentaran; conserva las siete filas")
     parser.add_argument("--worker", choices=[p[1] for p in PROBLEMS], help=argparse.SUPPRESS)
     parser.add_argument("--n", type=int, help=argparse.SUPPRESS)
     args = parser.parse_args()
-    if not math.isfinite(args.timeout) or args.timeout <= 0:
-        parser.error("--timeout debe ser positivo y finito")
+    if not math.isfinite(args.timeout) or args.timeout < 0:
+        parser.error("--timeout debe ser finito y mayor o igual a cero")
+    if any(n not in N_VALUES for n in args.values):
+        parser.error("--values debe contener entradas del laboratorio")
+    timeout = args.timeout or None
     if args.worker:
         if args.n is None:
             parser.error("el worker necesita --n")
         worker(args.worker, args.n)
         return
     report = ["# Resultados de profiling real", "",
-              f"Limite por proceso: {args.timeout:g} s. Cada entrada se intenta una vez.",
+              "Cada fila indica el limite usado en su intento; sin_limite permite finalizar sin corte automatico.",
               "Tiempo medido dentro de la funcion, incluyendo flush de salida; excluye arranque de Python.",
               "El limite incluye el arranque del proceso. Un limite excedido no es un tiempo medido ni una estimacion.",
               "Las impresiones se ejecutan y se redirigen al dispositivo nulo; no se mide el renderizado de terminal.", ""]
     for name, module_name, complexity in PROBLEMS:
-        rows = []
+        previous = load_results(name) if args.resume else {}
+        rows = [previous.get(n, dict(n=n,
+                    operaciones=importlib.import_module(module_name).operation_count(n),
+                    estado="pendiente", tiempo_medido_segundos="", limite_segundos=""))
+                for n in N_VALUES]
         print(f"{name}: {complexity}", flush=True)
-        for n in N_VALUES:
-            row = measure(module_name, n, args.timeout)
-            rows.append(row)
+        for index, n in enumerate(N_VALUES):
+            if n not in args.values or (args.resume and rows[index]["estado"] == "completado"):
+                continue
+            print(f"  Ejecutando n={n}...", flush=True)
+            row = measure(module_name, n, timeout)
+            rows[index] = row
+            # Persist each finished attempt before starting a potentially long input.
+            save_results(name, complexity, rows)
             print(f"  n={n}: {row['estado']} {row['tiempo_medido_segundos']}", flush=True)
-        path = BASE / "resultados" / f"{name}.csv"
-        path.parent.mkdir(exist_ok=True)
-        with path.open("w", newline="", encoding="utf-8") as stream:
-            writer = csv.DictWriter(stream, fieldnames=FIELDS)
-            writer.writeheader()
-            writer.writerows(rows)
-        svg_graph(name, complexity, rows)
+        save_results(name, complexity, rows)
         report += [f"## {name} - {complexity}", "",
-                   "| n | Operaciones | Tiempo medido (s) | Estado |",
-                   "| --- | --- | --- | --- |"]
-        report += [f"| {r['n']} | {r['operaciones']} | {r['tiempo_medido_segundos'] or '-'} | {r['estado']} |" for r in rows]
+                   "| n | Operaciones | Tiempo medido (s) | Estado | Limite del intento (s) |",
+                   "| --- | --- | --- | --- | --- |"]
+        report += [f"| {r['n']} | {r['operaciones']} | {r['tiempo_medido_segundos'] or '-'} | {r['estado']} | {r['limite_segundos'] or '-'} |" for r in rows]
         report.append("")
     (BASE / "resultados" / "resumen.md").write_text("\n".join(report), encoding="utf-8")
 

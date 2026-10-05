@@ -5,16 +5,20 @@
 <text x="480" y="55" text-anchor="middle" font-size="14">Ejecuciones completadas; escala log-log; salida a dispositivo nulo</text>
 <line x1="100" y1="430.0" x2="880" y2="430.0" stroke="#ddd"/>
 <text x="88" y="434.0" text-anchor="end" font-size="12">1e-5</text>
-<line x1="100" y1="362.0" x2="880" y2="362.0" stroke="#ddd"/>
-<text x="88" y="366.0" text-anchor="end" font-size="12">1e-4</text>
-<line x1="100" y1="294.0" x2="880" y2="294.0" stroke="#ddd"/>
-<text x="88" y="298.0" text-anchor="end" font-size="12">1e-3</text>
-<line x1="100" y1="226.0" x2="880" y2="226.0" stroke="#ddd"/>
-<text x="88" y="230.0" text-anchor="end" font-size="12">1e-2</text>
-<line x1="100" y1="158.0" x2="880" y2="158.0" stroke="#ddd"/>
-<text x="88" y="162.0" text-anchor="end" font-size="12">1e-1</text>
+<line x1="100" y1="381.42857142857144" x2="880" y2="381.42857142857144" stroke="#ddd"/>
+<text x="88" y="385.42857142857144" text-anchor="end" font-size="12">1e-4</text>
+<line x1="100" y1="332.8571428571429" x2="880" y2="332.8571428571429" stroke="#ddd"/>
+<text x="88" y="336.8571428571429" text-anchor="end" font-size="12">1e-3</text>
+<line x1="100" y1="284.28571428571433" x2="880" y2="284.28571428571433" stroke="#ddd"/>
+<text x="88" y="288.28571428571433" text-anchor="end" font-size="12">1e-2</text>
+<line x1="100" y1="235.71428571428572" x2="880" y2="235.71428571428572" stroke="#ddd"/>
+<text x="88" y="239.71428571428572" text-anchor="end" font-size="12">1e-1</text>
+<line x1="100" y1="187.14285714285714" x2="880" y2="187.14285714285714" stroke="#ddd"/>
+<text x="88" y="191.14285714285714" text-anchor="end" font-size="12">1e0</text>
+<line x1="100" y1="138.5714285714286" x2="880" y2="138.5714285714286" stroke="#ddd"/>
+<text x="88" y="142.5714285714286" text-anchor="end" font-size="12">1e1</text>
 <line x1="100" y1="90.0" x2="880" y2="90.0" stroke="#ddd"/>
-<text x="88" y="94.0" text-anchor="end" font-size="12">1e0</text>
+<text x="88" y="94.0" text-anchor="end" font-size="12">1e2</text>
 <text x="100.0" y="455" text-anchor="middle" font-size="12">1</text>
 <text x="230.0" y="455" text-anchor="middle" font-size="12">10</text>
 <text x="360.0" y="455" text-anchor="middle" font-size="12">100</text>
@@ -26,10 +30,11 @@
 <line x1="100" y1="430" x2="880" y2="430" stroke="#222"/>
 <text x="25" y="260" transform="rotate(-90 25 260)" text-anchor="middle" font-size="14">Tiempo medido (s)</text>
 <text x="480" y="482" text-anchor="middle" font-size="14">n</text>
-<circle cx="100.0" cy="400.6672301300688" r="5" fill="#087f8c"/>
-<circle cx="230.0" cy="385.3852870594103" r="5" fill="#087f8c"/>
-<circle cx="360.0" cy="259.1066388382759" r="5" fill="#087f8c"/>
-<circle cx="490.0" cy="119.53499844664645" r="5" fill="#087f8c"/>
-<polyline points="100.0,400.6672301300688 230.0,385.3852870594103 360.0,259.1066388382759 490.0,119.53499844664645" fill="none" stroke="#087f8c" stroke-width="2"/>
-<text x="480" y="515" text-anchor="middle" font-size="13">Limite excedido (sin punto): n = 10000, 100000, 1000000</text>
+<circle cx="100.0" cy="409.0480215214777" r="5" fill="#087f8c"/>
+<circle cx="230.0" cy="398.13234789957875" r="5" fill="#087f8c"/>
+<circle cx="360.0" cy="307.9333134559114" r="5" fill="#087f8c"/>
+<circle cx="490.0" cy="208.23928460474747" r="5" fill="#087f8c"/>
+<circle cx="620.0" cy="102.7452920205248" r="5" fill="#087f8c"/>
+<polyline points="100.0,409.0480215214777 230.0,398.13234789957875 360.0,307.9333134559114 490.0,208.23928460474747 620.0,102.7452920205248" fill="none" stroke="#087f8c" stroke-width="2"/>
+<text x="480" y="515" text-anchor="middle" font-size="13">Sin medicion completa (sin punto): n = 100000, 1000000</text>
 </g></svg>
