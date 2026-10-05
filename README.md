@@ -71,7 +71,4 @@ Para mostrar los programas individuales: `python problem1.py 10`, `python proble
 | 3 | `O(n^2)` |
 
 ## Video
-
-Enlace de YouTube no listado: pendiente de agregar despues de grabar y subir el video.
-
-El guion se entrega en el chat y no forma parte de los archivos del repositorio.
+https://youtu.be/dHjncKzMDNo
