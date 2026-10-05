@@ -1,10 +1,11 @@
-def function_original(n: int) -> int:
+import argparse
+
+
+def function_original(n: int) -> None:
     """Instrumented version of the nested-loop program from problem 3."""
-    counter = 0
     for i in range(1, n // 3 + 1):
         for j in range(1, n + 1, 4):
-            counter += 1
-    return counter
+            print("Sequence")
 
 
 def operation_count(n: int) -> int:
@@ -16,5 +17,7 @@ def operation_count(n: int) -> int:
 
 
 if __name__ == "__main__":
-    for value in [1, 10, 100, 1000]:
-        print(f"n={value}, prints={operation_count(value)}")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("n", type=int)
+    args = parser.parse_args()
+    function_original(args.n)

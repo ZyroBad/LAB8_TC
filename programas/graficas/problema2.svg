@@ -1,32 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
-  <rect width="100%" height="100%" fill="#ffffff"/>
-  <text x="450.0" y="28" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700">problema2 - O(n) (escala log-log)</text>
-  <line x1="80" y1="45" x2="80" y2="450" stroke="#334155" stroke-width="2"/>
-  <line x1="80" y1="450" x2="865" y2="450" stroke="#334155" stroke-width="2"/>
-  <text x="22" y="260.0" transform="rotate(-90 22 260.0)" text-anchor="middle" font-family="Arial" font-size="14">Tiempo estimado (s)</text>
-  <text x="450.0" y="510" text-anchor="middle" font-family="Arial" font-size="14">n</text>
-  <polyline fill="none" stroke="#0f766e" stroke-width="3" points="80.00,450.00 210.83,229.97 341.67,192.98 472.50,155.98 603.33,118.99 734.17,81.99 865.00,45.00"/>
-  <circle cx="80.00" cy="450.00" r="5" fill="#0f766e" />
-<circle cx="210.83" cy="229.97" r="5" fill="#0f766e" />
-<circle cx="341.67" cy="192.98" r="5" fill="#0f766e" />
-<circle cx="472.50" cy="155.98" r="5" fill="#0f766e" />
-<circle cx="603.33" cy="118.99" r="5" fill="#0f766e" />
-<circle cx="734.17" cy="81.99" r="5" fill="#0f766e" />
-<circle cx="865.00" cy="45.00" r="5" fill="#0f766e" />
-  <text x="80.00" y="482" text-anchor="middle" font-size="12">1</text>
-<text x="210.83" y="482" text-anchor="middle" font-size="12">10</text>
-<text x="341.67" y="482" text-anchor="middle" font-size="12">100</text>
-<text x="472.50" y="482" text-anchor="middle" font-size="12">1000</text>
-<text x="603.33" y="482" text-anchor="middle" font-size="12">10000</text>
-<text x="734.17" y="482" text-anchor="middle" font-size="12">100000</text>
-<text x="865.00" y="482" text-anchor="middle" font-size="12">1000000</text>
-  <text x="80.00" y="440.00" text-anchor="middle" font-size="11">1e-12s</text>
-<text x="210.83" y="219.97" text-anchor="middle" font-size="11">8.87e-07s</text>
-<text x="341.67" y="182.98" text-anchor="middle" font-size="11">8.87e-06s</text>
-<text x="472.50" y="145.98" text-anchor="middle" font-size="11">8.87e-05s</text>
-<text x="603.33" y="108.99" text-anchor="middle" font-size="11">0.000887s</text>
-<text x="734.17" y="71.99" text-anchor="middle" font-size="11">0.00887s</text>
-<text x="865.00" y="35.00" text-anchor="middle" font-size="11">0.0887s</text>
-  <text x="80" y="474" font-family="Arial" font-size="12">min=1e-12s</text>
-  <text x="865" y="63" text-anchor="end" font-family="Arial" font-size="12">max=0.088672s</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560">
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="Arial" fill="#222">
+<text x="480" y="30" text-anchor="middle" font-size="20">problema2 - O(n)</text>
+<text x="480" y="55" text-anchor="middle" font-size="14">Ejecuciones completadas; escala log-log; salida a dispositivo nulo</text>
+<line x1="100" y1="430.0" x2="880" y2="430.0" stroke="#ddd"/>
+<text x="88" y="434.0" text-anchor="end" font-size="12">1e-5</text>
+<line x1="100" y1="373.3333333333333" x2="880" y2="373.3333333333333" stroke="#ddd"/>
+<text x="88" y="377.3333333333333" text-anchor="end" font-size="12">1e-4</text>
+<line x1="100" y1="316.6666666666667" x2="880" y2="316.6666666666667" stroke="#ddd"/>
+<text x="88" y="320.6666666666667" text-anchor="end" font-size="12">1e-3</text>
+<line x1="100" y1="260.0" x2="880" y2="260.0" stroke="#ddd"/>
+<text x="88" y="264.0" text-anchor="end" font-size="12">1e-2</text>
+<line x1="100" y1="203.33333333333334" x2="880" y2="203.33333333333334" stroke="#ddd"/>
+<text x="88" y="207.33333333333334" text-anchor="end" font-size="12">1e-1</text>
+<line x1="100" y1="146.66666666666663" x2="880" y2="146.66666666666663" stroke="#ddd"/>
+<text x="88" y="150.66666666666663" text-anchor="end" font-size="12">1e0</text>
+<line x1="100" y1="90.0" x2="880" y2="90.0" stroke="#ddd"/>
+<text x="88" y="94.0" text-anchor="end" font-size="12">1e1</text>
+<text x="100.0" y="455" text-anchor="middle" font-size="12">1</text>
+<text x="230.0" y="455" text-anchor="middle" font-size="12">10</text>
+<text x="360.0" y="455" text-anchor="middle" font-size="12">100</text>
+<text x="490.0" y="455" text-anchor="middle" font-size="12">1000</text>
+<text x="620.0" y="455" text-anchor="middle" font-size="12">10000</text>
+<text x="750.0" y="455" text-anchor="middle" font-size="12">100000</text>
+<text x="880.0" y="455" text-anchor="middle" font-size="12">1000000</text>
+<line x1="100" y1="90" x2="100" y2="430" stroke="#222"/>
+<line x1="100" y1="430" x2="880" y2="430" stroke="#222"/>
+<text x="25" y="260" transform="rotate(-90 25 260)" text-anchor="middle" font-size="14">Tiempo medido (s)</text>
+<text x="480" y="482" text-anchor="middle" font-size="14">n</text>
+<circle cx="100.0" cy="427.8792396242127" r="5" fill="#087f8c"/>
+<circle cx="230.0" cy="374.3892947549018" r="5" fill="#087f8c"/>
+<circle cx="360.0" cy="316.809820260237" r="5" fill="#087f8c"/>
+<circle cx="490.0" cy="261.712510510283" r="5" fill="#087f8c"/>
+<circle cx="620.0" cy="217.26950065320264" r="5" fill="#087f8c"/>
+<circle cx="750.0" cy="160.20684967108883" r="5" fill="#087f8c"/>
+<circle cx="880.0" cy="103.50402368891383" r="5" fill="#087f8c"/>
+<polyline points="100.0,427.8792396242127 230.0,374.3892947549018 360.0,316.809820260237 490.0,261.712510510283 620.0,217.26950065320264 750.0,160.20684967108883 880.0,103.50402368891383" fill="none" stroke="#087f8c" stroke-width="2"/>
+<text x="480" y="515" text-anchor="middle" font-size="13">Limite excedido (sin punto): n = ninguno</text>
+</g></svg>

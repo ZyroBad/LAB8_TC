@@ -4,9 +4,11 @@ Repositorio para el Laboratorio 8.
 
 ## Contenido
 
-- `programas/`: implementaciones instrumentadas de los problemas 1, 2 y 3.
+- `programas/`: implementaciones de los problemas 1, 2 y 3 y profiling real.
 - `programas/resultados/`: tablas CSV con input, operaciones y tiempos.
-- `programas/graficas/`: graficas SVG de input contra tiempo estimado en escala log-log.
+- `programas/graficas/`: graficas SVG de input contra tiempo medido en escala log-log.
+- `programas/resultados/resumen.md`: tablas legibles y condiciones de medicion.
+- `guion.md`: guion para ejecutar y presentar el laboratorio en video.
 - `ejercicios_a_mano/Lab8_TC_Sebastian_Lemus_241155.pdf`: PDF con los ejercicios hechos a mano.
 
 ## Requisitos
@@ -35,9 +37,15 @@ El script genera:
 
 ## Nota sobre el profiling
 
-Los programas se implementaron con contadores para medir el trabajo sin imprimir millones de lineas. Para los valores grandes de `n`, ejecutar literalmente los ciclos de los problemas 1 y 3 seria impractico, porque sus crecimientos son `O(n^2 log n)` y `O(n^2)`.
+Se ejecutan los ciclos originales. Los problemas 2 y 3 imprimen `Sequence` en cada iteracion correspondiente. Durante el profiling, esas impresiones se redirigen al dispositivo nulo para evitar llenar la terminal o generar archivos enormes. El tiempo incluye las llamadas a `print` y el vaciado del buffer, pero no el renderizado de texto en una terminal.
 
-Por eso `profile.py` calcula el numero exacto de operaciones principales y usa una calibracion local de operaciones por segundo para estimar el tiempo de ejecucion. Tambien registra el tiempo real que toma calcular la formula exacta.
+Cada una de las siete entradas se intenta en un proceso separado. Se mide con `time.perf_counter()` la ejecucion de la funcion; se excluyen la importacion y el arranque de Python. El limite por proceso es de 10 segundos e incluye el arranque. Si se supera, el proceso se termina y la fila se marca `limite_excedido`, sin inventar un tiempo. Las graficas solo muestran ejecuciones completadas. Los conteos exactos de operaciones se calculan aparte y no sustituyen las mediciones.
+
+Para aumentar el limite por entrada, ejecute `python profile.py --timeout 60`. Los tiempos dependen del equipo y las entradas pequenas pueden presentar ruido. El problema 1 para n=1000000 requiere 5000010000000 incrementos y el problema 3 requiere 83333250000 impresiones; por eso algunas entradas quedan incompletas bajo el limite. Estos casos no satisfacen una medicion completa de esas entradas y se documentan expresamente.
+
+Para ejecutar las pruebas: `python -m unittest discover -s programas -p test_programas.py -v` desde la raiz del repositorio.
+
+Para mostrar los programas individuales: `python problem1.py 10`, `python problem2.py 10` y `python problem3.py 10`. Use valores pequenos al mostrar impresiones en pantalla.
 
 ## Complejidades
 
@@ -51,4 +59,4 @@ Por eso `profile.py` calcula el numero exacto de operaciones principales y usa u
 
 Enlace de YouTube no listado: pendiente de agregar despues de grabar y subir el video.
 
-El guion se dejo en el chat de entrega para copiarlo al momento de grabar.
+El guion esta en `guion.md` y contempla las mediciones reales y los limites de ejecucion.

@@ -1,4 +1,4 @@
-from math import log2
+import argparse
 
 
 def function_original(n: int) -> int:
@@ -19,10 +19,12 @@ def operation_count(n: int) -> int:
         return 0
     i_count = n - (n // 2) + 1
     j_count = n - (n // 2)
-    k_count = int(log2(n)) + 1
+    k_count = n.bit_length()
     return i_count * j_count * k_count
 
 
 if __name__ == "__main__":
-    for value in [1, 10, 100, 1000]:
-        print(f"n={value}, counter={operation_count(value)}")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("n", type=int)
+    args = parser.parse_args()
+    print(function_original(args.n))
