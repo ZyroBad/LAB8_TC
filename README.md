@@ -8,7 +8,6 @@ Repositorio para el Laboratorio 8.
 - `programas/resultados/`: tablas CSV con input, operaciones y tiempos.
 - `programas/graficas/`: graficas SVG de input contra tiempo medido en escala log-log.
 - `programas/resultados/resumen.md`: tablas legibles y condiciones de medicion.
-- `ejercicios_a_mano/Analisis_verificado.pdf`: complemento con formulas exactas y supuestos del analisis.
 - `ejercicios_a_mano/Lab8_TC_Sebastian_Lemus_241155.pdf`: PDF con los ejercicios hechos a mano.
 
 ## Requisitos
