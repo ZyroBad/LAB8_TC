@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="28" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700">problema2 - O(n) (escala log-log)</text>
+  <line x1="80" y1="45" x2="80" y2="450" stroke="#334155" stroke-width="2"/>
+  <line x1="80" y1="450" x2="865" y2="450" stroke="#334155" stroke-width="2"/>
+  <text x="22" y="260.0" transform="rotate(-90 22 260.0)" text-anchor="middle" font-family="Arial" font-size="14">Tiempo estimado (s)</text>
+  <text x="450.0" y="510" text-anchor="middle" font-family="Arial" font-size="14">n</text>
+  <polyline fill="none" stroke="#0f766e" stroke-width="3" points="80.00,450.00 210.83,229.97 341.67,192.98 472.50,155.98 603.33,118.99 734.17,81.99 865.00,45.00"/>
+  <circle cx="80.00" cy="450.00" r="5" fill="#0f766e" />
+<circle cx="210.83" cy="229.97" r="5" fill="#0f766e" />
+<circle cx="341.67" cy="192.98" r="5" fill="#0f766e" />
+<circle cx="472.50" cy="155.98" r="5" fill="#0f766e" />
+<circle cx="603.33" cy="118.99" r="5" fill="#0f766e" />
+<circle cx="734.17" cy="81.99" r="5" fill="#0f766e" />
+<circle cx="865.00" cy="45.00" r="5" fill="#0f766e" />
+  <text x="80.00" y="482" text-anchor="middle" font-size="12">1</text>
+<text x="210.83" y="482" text-anchor="middle" font-size="12">10</text>
+<text x="341.67" y="482" text-anchor="middle" font-size="12">100</text>
+<text x="472.50" y="482" text-anchor="middle" font-size="12">1000</text>
+<text x="603.33" y="482" text-anchor="middle" font-size="12">10000</text>
+<text x="734.17" y="482" text-anchor="middle" font-size="12">100000</text>
+<text x="865.00" y="482" text-anchor="middle" font-size="12">1000000</text>
+  <text x="80.00" y="440.00" text-anchor="middle" font-size="11">1e-12s</text>
+<text x="210.83" y="219.97" text-anchor="middle" font-size="11">8.87e-07s</text>
+<text x="341.67" y="182.98" text-anchor="middle" font-size="11">8.87e-06s</text>
+<text x="472.50" y="145.98" text-anchor="middle" font-size="11">8.87e-05s</text>
+<text x="603.33" y="108.99" text-anchor="middle" font-size="11">0.000887s</text>
+<text x="734.17" y="71.99" text-anchor="middle" font-size="11">0.00887s</text>
+<text x="865.00" y="35.00" text-anchor="middle" font-size="11">0.0887s</text>
+  <text x="80" y="474" font-family="Arial" font-size="12">min=1e-12s</text>
+  <text x="865" y="63" text-anchor="end" font-family="Arial" font-size="12">max=0.088672s</text>
+</svg>
